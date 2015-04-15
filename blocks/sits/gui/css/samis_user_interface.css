@@ -267,7 +267,7 @@ groups_load_message {
 }
 /*sits Filter Form */
 #sits_filterform div,
-#sits_filterform fieldset {display:inline;float:left;clear:none;width:auto;margin:0;line-height:2;}
+#sits_filterform fieldset {display:inline-block;}
 #sits_filterform .fitem {white-space:pre;}
 #sits_filterform fieldset>div {display:block;float:left;background:#f2f2f2;padding:2px;}
 #sits_filterform select,
