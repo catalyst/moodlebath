@@ -17,7 +17,7 @@
  * along with the Panopto plugin for Moodle.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$string['pluginname'] = 'Panopto';
+$string['pluginname'] = 'Re:View (Panopto)';
 $string['panopto:addinstance'] = 'Add a new Panopto block';
 $string['panopto:myaddinstance'] = 'Add a new Panopto block to my page';
 $string['panopto:provision_course'] = 'Provision a course';
