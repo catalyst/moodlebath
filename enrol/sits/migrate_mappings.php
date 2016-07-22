@@ -10,7 +10,7 @@
 echo "\n\n";
 $root = dirname(__FILE__);
 
-//define('CLI_SCRIPT', true);
+//define('CLI_SCRIPT', true); // this should probably be used in addtion to capability checks if script can be access from the web
 require_once($root . '/../../config.php');
 require_once($CFG->dirroot . '/local/sits/lib/mapping.class.php');
 require_once($CFG->dirroot . '/local/sits/lib/cohort.class.php');

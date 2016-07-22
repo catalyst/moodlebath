@@ -35,7 +35,7 @@ $PAGE->set_title(get_string('manage_mappings', 'enrol_sits'));
 $PAGE->set_heading($course->fullname);
 
 echo $OUTPUT->header();
-?>
+// move js to module ?>
 <script src ="js/sits_block.js" type="text/javascript"></script>
 <?php
 echo $OUTPUT->heading(get_string('manage_mappings', 'enrol_sits'));

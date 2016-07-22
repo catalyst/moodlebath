@@ -362,7 +362,7 @@ class sits_course_enrolment_table extends html_table implements renderable {
                 'containerId'=>$this->id,
                 'userIds'=>array_keys($this->users),
                 'courseId'=>$this->manager->get_course()->id,
-                'otherusers'=>isset($this->otherusers));
+                'otherusers'=>isset($this->otherusers)); // does this js module need sesskey?
             $this->manager->get_moodlepage()->requires->yui_module($modules, $function, array($arguments));
         }
     }

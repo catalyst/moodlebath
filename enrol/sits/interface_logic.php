@@ -8,7 +8,8 @@
  */
 
 global $CFG, $USER, $COURSE;
-
+// replace all _REQUEST checks with required_param or optional_param
+// use require_login, require_sesskey
 if(isset($_REQUEST['courseid'])){
     $courseid = $_REQUEST['courseid'] ? $_REQUEST['courseid'] : $_REQUEST['courseid'];
 }else{
@@ -39,10 +40,10 @@ elseif(isset($_REQUEST['tabgroup'])) //Brought to this page by either a tab swit
     $courseid = $_REQUEST['courseid'];
 }
 
-$context = get_context_instance(CONTEXT_COURSE, $courseid);
+$context = get_context_instance(CONTEXT_COURSE, $courseid); //deprecated
 
 
-if(has_capability('moodle/course:manageactivities', $context))
+if(has_capability('moodle/course:manageactivities', $context)) // use require_capability
 {
     //Here is the business end of things
     $sits_sync = new enrol_sits_plugin();

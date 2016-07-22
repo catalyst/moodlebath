@@ -1001,7 +1001,7 @@ sits_block.asyncRequest = function (op, xml) {
 	  failure:responseFailure
 	};
 	
-	transaction = YAHOO.util.Connect.asyncRequest('POST', sits_block.sUrl, callback, 'op=' + op + '&xml=' + escape(xml));
+	transaction = YAHOO.util.Connect.asyncRequest('POST', sits_block.sUrl, callback, 'op=' + op + '&xml=' + escape(xml)); // add sesskey to post request
 };
 	
 sits_block.create_batch_xml = function (courseid)

@@ -1,4 +1,5 @@
 <?php
+// remove this file?
 /*
 * @package    enrol
 * @subpackage sits

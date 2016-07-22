@@ -17,7 +17,7 @@ $context = get_context_instance(CONTEXT_COURSE, $course->id, MUST_EXIST);
 
 require_login($course);
 $plugin = enrol_get_plugin('sits');
-
+// needs capability check before this step. any logged in user could delete_instance with only a courseid param.
 if ($instances = $DB->get_records('enrol', array('courseid'=>$course->id, 'enrol'=>'sits'), 'id ASC')) {
 	$instance = array_shift($instances);
 	if ($instances) {

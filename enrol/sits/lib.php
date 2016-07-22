@@ -81,6 +81,7 @@ class enrol_sits_plugin extends enrol_plugin implements i_sits_sync
 
     //Main Cron method
     public function cron() {    	
+        // move cron method to scheduled task
     	GLOBAL $CFG;
     	
     	$cronday = false;
@@ -312,7 +313,7 @@ class enrol_sits_plugin extends enrol_plugin implements i_sits_sync
          
         global $CFG;
          
-        if($CFG->sits_sync_all == 1){
+        if($CFG->sits_sync_all == 1){ // move to plugin config table, use get_config
             $this->report->log_report(2, 'Full sync routine called whilst already in progress');
             return false;
         }
@@ -464,7 +465,7 @@ sql;
     public function read_mapping_for_course($cohort, $courseid){		
     	GLOBAL $DB;
     	
-        if($cohort->type === 'module'){
+        if($cohort->type === 'module'){ // sql params should be built using moodle api, eg params = array(key=>value).
             $conditions = <<<sql
 courseid = %s
 AND sits_code = '%s'
