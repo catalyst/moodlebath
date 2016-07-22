@@ -34,7 +34,7 @@ class block_sits extends block_base {
     function get_content()
     {
         global $CFG, $COURSE;
-        //$context = get_context_instance(CONTEXT_COURSE, $COURSE->id);
+        //$context = get_context_instance(CONTEXT_COURSE, $COURSE->id); // delete
         $context = context_course::instance($COURSE->id);
         if(has_capability('moodle/course:update', $context))
         {
@@ -58,14 +58,14 @@ class block_sits extends block_base {
 
     function set_content(){
         GLOBAL $CFG, $COURSE;
-        // $context = get_context_instance(CONTEXT_COURSE, 1);
-        $context = context_course::instance(1);
+        // $context = get_context_instance(CONTEXT_COURSE, 1); // delete
+        $context = context_course::instance(1); // replace 1 with SITE_ID or $COURSE->id ?
         $cohorts_title = get_string('link_cohorts','block_sits');
         $adduser_title = get_string('add_user','block_sits');
 
-        if($CFG->sits_gui_enabled){
+        if($CFG->sits_gui_enabled){ // change to plugin config scope (get_config)
             $markup = <<<html
-<script type="text/javascript">
+<script type="text/javascript"> // move inline js to module
     function open_samis_cohort_window(){
         window.open("$CFG->wwwroot/blocks/sits/gui/mappings_interface.php?courseid=$COURSE->id","samis_user_interface","height=700,width=700,status=yes,resizable=yes,scrollbars=yes,location=no");
     }

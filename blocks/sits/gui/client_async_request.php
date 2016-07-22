@@ -17,11 +17,13 @@ $returnurl = $CFG->wwwroot . '/course/index.php';
 // Check permissions.
 require_login();
 if (isguestuser()) {
-    print_error('guestsarenotallowed', '', $returnurl); //FIXME need more security than this
+    print_error('guestsarenotallowed', '', $returnurl); //FIXME need more security than this - yes.
 }
+
+// add require_sesskey
 //Grab the request:
-$op = $_POST['op'];
-$xml = stripslashes($_POST['xml']);
+$op = $_POST['op']; // use required_param instead
+$xml = stripslashes($_POST['xml']); // use required_param instead
 
 new sits_client_request($op, $xml);
 ?>

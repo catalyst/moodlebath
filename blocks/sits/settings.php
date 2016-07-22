@@ -7,7 +7,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 require_once($CFG->dirroot.'/mod/forum/lib.php');
-$options = array('Off', 'On');
+$options = array('Off', 'On'); // options should use lang strings
 
 $settings->add(new admin_setting_configselect('sits_gui_enabled', get_string('sits_gui_label', 'block_sits'),
 get_string('sits_gui_desc', 'block_sits'), 1, $options));
