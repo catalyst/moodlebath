@@ -7,7 +7,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 require_once('../../../config.php');
-GLOBAL $CFG;
+GLOBAL $CFG; // not needed
 
 require_once($CFG->dirroot . '/group/lib.php');
 require_once($CFG->dirroot . '/lib/grouplib.php');
@@ -15,10 +15,11 @@ require_once($CFG->dirroot . '/enrol/sits/lib.php');  //This used to require sam
 
 require_login();
 if (isguestuser()) {
-    print_error('guestsarenotallowed', '', $returnurl); //FIXME need more security than this
+    print_error('guestsarenotallowed', '', $returnurl); //FIXME need more security than this // use plugin specific capability check
+
 }
 
-//require_login($course);
+//require_login($course); // duplicate, remove
 //require_capability('enrol/manual:config', $context);
 
 
@@ -34,6 +35,7 @@ $PAGE->set_title(get_string('manage_mappings', 'enrol_sits'));
 $PAGE->set_heading(' '); //Set to a space in order to display the logo in 'popup' layout. al412.
 
 echo $OUTPUT->header();
+// should use renderer for body code.
 if(true){ //access to insert here?>
     <body class="yui-skin-sam">
     <div id="canvas">

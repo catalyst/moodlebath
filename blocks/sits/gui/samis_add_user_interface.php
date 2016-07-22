@@ -8,7 +8,7 @@
  */
 
 require_once('../../../config.php');
-GLOBAL $CFG;
+GLOBAL $CFG; // not needed.
 
 require_once($CFG->dirroot . '/group/lib.php');
 require_once($CFG->dirroot . '/lib/grouplib.php');
@@ -16,10 +16,10 @@ require_once($CFG->dirroot . '/enrol/sits/lib.php');  //This used to require sam
 
 require_login();
 if (isguestuser()) {
-	print_error('guestsarenotallowed', '', $returnurl); //FIXME need more security than this
+	print_error('guestsarenotallowed', '', $returnurl); //FIXME need more security than this // use plugin specific capability check
 }
 
-require_login();
+require_login(); // duplicate, remove
 //require_capability('enrol/manual:config', $context);
 
 //Add BUCS Users to Moodle
@@ -34,6 +34,7 @@ $PAGE->set_context($context);
 $PAGE->set_title(get_string('manage_mappings', 'enrol_sits'));
 $PAGE->set_heading('Add Bath users to Moodle'); //Set to a space in order to display the logo in 'popup' layout. al412.
 
+// should use renderer for body code.
 echo $OUTPUT->header();?>
 
         <div id = "container">

@@ -2,14 +2,14 @@
 //Page to update SAMIS - Moodle Category mappings
 require('../../../../config.php');
 require_login();
-if(isset($_POST['savecategories'])){
+if(isset($_POST['savecategories'])){ // security - use required_param or optional_param and require_sesskey
 	
 	//Get the values
 	foreach($_POST as $category => $samis_dept){
 		$categoryid = trim(preg_replace('/^sits_category_id_/','',$category));
 		if(!empty($categoryid) && !empty($samis_dept)){
 			//Get the field ID 
-			$id = $DB->get_field('sits_categories', 'id', array('id' => $categoryid));
+			$id = $DB->get_field('sits_categories', 'id', array('id' => $categoryid)); // db queries in loop, possible performance issue
 			$DB->set_field('sits_categories', 'sits_dep_code', $samis_dept, array('id'=>$categoryid));
 			//$DB->update_record('sits_categories',$objData );
 		}

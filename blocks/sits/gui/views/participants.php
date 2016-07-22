@@ -1,7 +1,7 @@
 <?PHP // $Id: index.php,v 1.194.2.24 2010/06/17 21:02:36 mudrd8mz Exp $
 
 // Lists all the users within a given course along with relevant mapping info
-// A big old hatchet job of the normal Moodle participants script, to be thoroughly reviewed
+// A big old hatchet job of the normal Moodle participants script, to be thoroughly reviewed // this must be from moodle 1.9? still needed? it shouldn't work at all in M2+
 
 global $CFG, $USER, $COURSE;
 
@@ -23,10 +23,10 @@ $roleid       = optional_param('roleid', 0, PARAM_INT);                   // opt
 $courseid     = optional_param('id', 0, PARAM_INT);
 
  
-if (! $course = get_record('course', 'id', $courseid)) {
+if (! $course = get_record('course', 'id', $courseid)) { // is this still in use? not compatible with Moodle 2+, maybe delete this file?
     error("Course ID is incorrect");
 }
-if (! $context = get_context_instance(CONTEXT_COURSE, $course->id)) {
+if (! $context = get_context_instance(CONTEXT_COURSE, $course->id)) {// is this still in use? not compatible with Moodle 2+, maybe delete this file?
     error("Context ID is incorrect");
 }
 
@@ -35,8 +35,8 @@ unset($courseid);
 
 require_login($course);
 
-$sitecontext = get_context_instance(CONTEXT_SYSTEM);
-$frontpagectx = get_context_instance(CONTEXT_COURSE, SITEID);
+$sitecontext = get_context_instance(CONTEXT_SYSTEM);// is this still in use? not compatible with Moodle 2+, maybe delete this file?
+$frontpagectx = get_context_instance(CONTEXT_COURSE, SITEID);// is this still in use? not compatible with Moodle 2+, maybe delete this file?
 
 if ($context->id != $frontpagectx->id) {
     require_capability('moodle/course:viewparticipants', $context);

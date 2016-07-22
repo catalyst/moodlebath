@@ -15,7 +15,7 @@ require_once('./samis_interface_logic.php');//This is where the business end of 
 
 require_login();
 if (isguestuser()) {
-    print_error('guestsarenotallowed', '', $returnurl); //FIXME need more security than this
+    print_error('guestsarenotallowed', '', $returnurl); //FIXME need more security than this // capability check should be enough
 }
 //Markup starts here
 $courseid = required_param('courseid', PARAM_INT);
@@ -23,8 +23,8 @@ $courseid = required_param('courseid', PARAM_INT);
 $course = $DB->get_record('course', array('id'=>$courseid), '*', MUST_EXIST);
 $context = context_course::instance($course->id);
 
-require_login($course);
-require_capability('enrol/manual:config', $context);
+require_login($course); // duplicate, delete
+require_capability('enrol/manual:config', $context); // use a capability specific to this plugin.
 
 
 $PAGE->set_url('/blocks/sits/view.php', array('courseid'=>$course->id));
@@ -37,7 +37,7 @@ $plugin = enrol_get_plugin('sits');
 
 $PAGE->set_title(get_string('link_cohorts', 'block_sits'));
 $PAGE->set_heading(' '); //Set to a space in order to display the logo in 'popup' layout. Hack. al412.
-
+// should use renderer for body code.
 echo $OUTPUT->header();?>
 
 <!--  <body> -->

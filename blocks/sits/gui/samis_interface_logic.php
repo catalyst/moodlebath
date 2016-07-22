@@ -6,43 +6,43 @@
  * @author     Alex Lydiate {@link http://alexlydiate.co.uk}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-global $CFG, $USER, $COURSE; //TODO: remove this line, surely it is redundant - these are setup already by Moodle
+global $CFG, $USER, $COURSE; //TODO: remove this line, surely it is redundant - these are setup already by Moodle // replace with require_once for main config.php
 
 //TODO: consider using Moodle parameters: http://docs.moodle.org/dev/Security#Don.27t_trust_any_input_from_users
-if(isset($_REQUEST['courseid'])){
-    $courseid = $_REQUEST['courseid'] ? $_REQUEST['courseid'] : $_REQUEST['courseid'];
+if(isset($_REQUEST['courseid'])){// use required_param or optional_param
+    $courseid = $_REQUEST['courseid'] ? $_REQUEST['courseid'] : $_REQUEST['courseid'];// use required_param or optional_param
 }else{
     //$courseid = '';
 }
-if(isset($_REQUEST['action'])){
-    $action = $_REQUEST['action'];
+if(isset($_REQUEST['action'])){// use required_param or optional_param
+    $action = $_REQUEST['action'];// use required_param or optional_param
 }
-if(isset($_REQUEST['group_reference'])){
-    $groupid = $_REQUEST['group_reference'] ? $_REQUEST['group_reference'] : '';
+if(isset($_REQUEST['group_reference'])){// use required_param or optional_param
+    $groupid = $_REQUEST['group_reference'] ? $_REQUEST['group_reference'] : '';// use required_param or optional_param
 }
-if(isset($_REQUEST['groupname'])){
-    $groupname = $_REQUEST['groupname'] ? $_REQUEST['groupname'] : '';
-}
-
-if(isset($_REQUEST['listcohorts'])){
-    $selcohorts = $_REQUEST['listcohorts'];
+if(isset($_REQUEST['groupname'])){// use required_param or optional_param
+    $groupname = $_REQUEST['groupname'] ? $_REQUEST['groupname'] : '';// use required_param or optional_param
 }
 
-if(isset($_REQUEST['groupsubmit']) OR isset($_REQUEST['gotogroups'])) //Brought to this page by a group submit action
+if(isset($_REQUEST['listcohorts'])){// use required_param or optional_param
+    $selcohorts = $_REQUEST['listcohorts'];// use required_param or optional_param
+}
+
+if(isset($_REQUEST['groupsubmit']) OR isset($_REQUEST['gotogroups'])) //Brought to this page by a group submit action// use required_param or optional_param
 {
     $disp = 'group';
-    $courseid = $_REQUEST['grp_course'] ? $_REQUEST['grp_course'] : $_REQUEST['courseid'];
+    $courseid = $_REQUEST['grp_course'] ? $_REQUEST['grp_course'] : $_REQUEST['courseid'];// use required_param or optional_param
 }
-elseif(isset($_REQUEST['tabgroup'])) //Brought to this page by either a tab switch or from the main Moodle site.
+elseif(isset($_REQUEST['tabgroup'])) //Brought to this page by either a tab switch or from the main Moodle site.// use required_param or optional_param
 {
-    $disp = $_REQUEST['tabgroup'] ? 'group' : 'cohort'; //If tabbed to group then use group otherwise cohort is good for both other option and default load.
-    $courseid = $_REQUEST['courseid'];
+    $disp = $_REQUEST['tabgroup'] ? 'group' : 'cohort'; //If tabbed to group then use group otherwise cohort is good for both other option and default load.// use required_param or optional_param
+    $courseid = $_REQUEST['courseid'];// use required_param or optional_param
 }
 
 $context = context_course::instance($courseid);
 
 
-if(has_capability('moodle/course:manageactivities', $context))
+if(has_capability('moodle/course:manageactivities', $context)) // use required_capability instead
 {
     //Here is the business end of things
     $sits_sync = new enrol_sits_plugin();
@@ -126,7 +126,7 @@ if(has_capability('moodle/course:manageactivities', $context))
         }
     }
 }else{
-    die('This interface is for teachers and administrators only');
+    die('This interface is for teachers and administrators only'); //remove and use require_capability instead
 }
 ///Functions below
 

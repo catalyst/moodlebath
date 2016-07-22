@@ -60,12 +60,12 @@ class sits_course_enrolment_manager extends course_enrolment_manager {
 		$strunenrol = get_string('unenrol', 'enrol');
 		$stredit = get_string('edit');
 
-		$allroles   = $this->get_all_roles();
-		$assignable = $this->get_assignable_roles();
-		$allgroups  = $this->get_all_groups();
+		$allroles   = $this->get_all_roles(); //not used
+		$assignable = $this->get_assignable_roles();// not used
+		$allgroups  = $this->get_all_groups();// not used
 		$courseid   = $this->get_course()->id;
 		$context    = $this->get_context();
-		$canmanagegroups = has_capability('moodle/course:managegroups', $context);
+		$canmanagegroups = has_capability('moodle/course:managegroups', $context); // not used
 
 		$url = new moodle_url($pageurl, $this->get_url_params());
 		$extrafields = get_extra_user_fields($context);
@@ -79,7 +79,7 @@ class sits_course_enrolment_manager extends course_enrolment_manager {
                 'picture'    => new user_picture($user),
                 'firstname'  => fullname($user, true),
                 'lastseen'   => $strnever,
-                'roles'      => $this->get_role($user->role,$user->id,$courseid),
+                'roles'      => $this->get_role($user->role,$user->id,$courseid), // sql call in loop, possible performance issue (this happens everywhere in moodle generally)
                 'groups'     => array(),
                 'enrolments' => array()
 			);
@@ -213,7 +213,7 @@ $filterform = new sits_enrol_users_filter_form('enrols.php', array('manager' => 
 $filterform->set_data(array('search' => $search, 'ifilter' => $filter, 'role' => $role));
 $table->set_fields($fields, $renderer);
 
-$canassign = has_capability('moodle/role:assign', $manager->get_context());
+$canassign = has_capability('moodle/role:assign', $manager->get_context()); // not used
 $users = $manager->get_users_for_display($manager, $table->sort, $table->sortdirection, $table->page, $table->perpage);
 $contextid = $manager->get_context()->id;
 

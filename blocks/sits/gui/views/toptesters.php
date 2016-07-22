@@ -1,4 +1,5 @@
 <?PHP // Hacked together testers league table
+// M1.9 code, delete this file?
 global $CFG, $USER, $COURSE;
 require_once('../../../../config.php');
 require_once($CFG->libdir.'/tablelib.php');
